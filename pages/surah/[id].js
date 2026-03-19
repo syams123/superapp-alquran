@@ -327,7 +327,8 @@ function Surah({ surah, prevSurah, nextSurah }) {
 export default Surah;
 
 export async function getStaticPaths() {
-  const response = await fetch(`https://api.quran.sutanlab.id/surah/`);
+  // Mengganti ke API gading.dev karena sutanlab sudah tidak aktif
+  const response = await fetch(`https://api.quran.gading.dev/surah`);
   const resultJson = await response.json();
   const surahList = resultJson.data;
 
@@ -343,14 +344,25 @@ export async function getStaticProps({ params }) {
 
   const fetchData = async (url) => {
     const response = await fetch(url);
+    // Tambahkan pengecekan jika response tidak ok (404/500)
+    if (!response.ok) return { data: {} };
     const data = await response.json();
     return data;
   };
 
+  // URL API baru
+  const baseUrl = "https://api.quran.gading.dev/surah";
+
   const results = await Promise.all([
-    fetchData(`https://api.quran.sutanlab.id/surah/${id}`),
-    fetchData(`https://api.quran.sutanlab.id/surah/${Number(id) - 1}`),
-    fetchData(`https://api.quran.sutanlab.id/surah/${Number(id) + 1}`),
+    fetchData(`${baseUrl}/${id}`),
+    // Logika agar tidak fetch surah nomor 0 jika sedang di surah 1
+    Number(id) > 1 
+      ? fetchData(`${baseUrl}/${Number(id) - 1}`) 
+      : Promise.resolve({ data: {} }),
+    // Logika agar tidak fetch surah nomor 115 jika sedang di surah 114
+    Number(id) < 114 
+      ? fetchData(`${baseUrl}/${Number(id) + 1}`) 
+      : Promise.resolve({ data: {} }),
   ]);
 
   const [surah, prevSurah, nextSurah] = results;
