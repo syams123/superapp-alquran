@@ -49,16 +49,16 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Al-Quran Online Terjemahan dan Tafsir Ayat | Maos Quran</title>
+        <title>Mushaf Superapp | Al-Firdaus</title>
         <meta
           name="keywords"
-          content="Al-Quran Online, Baca Al-Quran. Al-Quran beserta terjemahan dan tafsir, Juz Amma, Doa Harian, Asmaul Husna, Wirid, Doa Tahlil"
+          content="Mushaf Online Superapp, Baca Al-Quran, Wirid, Tahlil dst. Mushaf Al-Quran disertai terjemahan dan tafsir, Juz Amma, Doa Harian, Asmaul Husna, Wirid, Doa Tahlil"
         />
         <meta
           name="description"
           content="Baca Al-Quran 30 Juz Lengkap dengan Terjemahan Bahasa Indonesia & Tafsir Ayat."
         />
-        <meta name="author" content="Indra Adi Kusuma"></meta>
+        <meta name="author" content="Mohamad Samsul Hadi"></meta>
       </Head>
 
       <PageHeader />
