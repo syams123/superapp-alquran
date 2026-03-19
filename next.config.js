@@ -1,28 +1,20 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    unoptimized: true,
-  },
-  // KODE PEMBUKA BLOKIR IFRAME
   async headers() {
     return [
       {
-        source: '/:path*',
+        source: '/(.*)',
         headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' https://*.blogspot.com http://*.blogspot.com",
-          },
           {
             key: 'X-Frame-Options',
             value: 'ALLOWALL',
           },
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors *",
+          },
         ],
       },
-    ]
+    ];
   },
-}
-
-module.exports = nextConfig
+};
