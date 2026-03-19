@@ -129,7 +129,7 @@ export default function PageHeader({ title, goBack, surah }) {
 }
 
 PageHeader.defaultProps = {
-  title: "Maos Qur'an",
+  title: "Mushaf Superapp",
   goBack: false,
   surah: {},
 };
