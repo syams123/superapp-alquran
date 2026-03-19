@@ -55,7 +55,8 @@ function Surah({ allSurahList }) {
 export default Surah;
 
 export async function getStaticProps() {
-  const res = await fetch("https://api.quran.sutanlab.id/surah/");
+  // Ganti ke API yang aktif agar tidak "fetch failed"
+  const res = await fetch("https://api.quran.gading.dev/surah/");
   const resultJson = await res.json();
 
   return {
