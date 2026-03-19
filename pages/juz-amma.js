@@ -52,9 +52,11 @@ function JuzAmma({ allSurahList }) {
 export default JuzAmma;
 
 export async function getStaticProps() {
-  const res = await fetch("https://api.quran.sutanlab.id/surah/");
+  // Mengganti ke API gading.dev yang lebih stabil
+  const res = await fetch("https://api.quran.gading.dev/surah/");
   const resultJson = await res.json();
 
+  // Filter surah nomor 78 (An-Naba) sampai 114 (An-Nas)
   const allSurahList = resultJson.data.filter((surah) => surah.number >= 78);
 
   return {
